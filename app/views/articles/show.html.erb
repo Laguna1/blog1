@@ -1,6 +1,8 @@
 <h5>Article N "<%= @article.id %>"</h5>
+
 <h1><%= @article.title %></h1>
 <p><%= @article.body %></p>
+
 <p><%= link_to 'Edit', edit_article_path(@article) %> | 
 <%= link_to 'Delete', article_path(@article),
                 method: :delete,
@@ -8,21 +10,10 @@
 
 
 <h2>Comments</h2>
-<% render @article.comments %>
+<%= render @article.comments %>
+
 
 <h5>Add your comment here:</h5>
-<%= form_with model: [@article, @article.comments.build ] do | form |%>
-  <p>
-    <%= form.label :commenter %><br>
-    <%= form.text_field :commenter %>
-  </p>
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+<%= render 'comments/form' %>
 
 <p><%= link_to 'Back', articles_path %></p>
